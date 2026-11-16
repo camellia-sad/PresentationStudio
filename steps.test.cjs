@@ -1,0 +1,23 @@
+const assert=require('node:assert/strict');
+const C=require('./core.js');
+const p=C.newProject('步骤操作验收');
+p.steps[0].id='s1';p.steps[0].name='开场';
+p.steps.push({id:'s2',name:'方法',duration:5000,note:'备注保留',camera:{cx:300,cy:400,zoom:1}},{id:'s3',name:'结果',duration:6000,note:'',camera:null});
+p.nodes=[C.node('text',100,100,'s1',{id:'a',text:'组件 A',name:'组件 A'}),C.node('text',450,100,'s2',{id:'b',text:'组件 B',name:'组件 B'}),C.node('text',450,400,'s3',{id:'c',text:'组件 C',name:'组件 C'})];
+p.edges=[C.edge('a','b','s1',{id:'ab'}),C.edge('b','c','s2',{id:'bc'})];
+const original=C.copy(p),id=C.insertStep(p,'s1',['a','b']);
+assert.deepEqual(p.steps.map(s=>s.id),['s1',id,'s2','s3']);
+assert.deepEqual(p.nodes.map(n=>n.stepId),[id,id,'s3']);
+assert.equal(p.edges[0].stepId,id);assert.equal(p.edges[1].stepId,'s3');
+assert.deepEqual(p.nodes.map(n=>[n.x,n.y,n.w,n.h]),original.nodes.map(n=>[n.x,n.y,n.w,n.h]));
+const beforeBlank=C.copy(p),blank=C.insertStep(p,'s2');
+assert.equal(p.steps[3].id,blank);assert.deepEqual(p.nodes,beforeBlank.nodes);assert.deepEqual(p.edges,beforeBlank.edges);
+for(const args of [['missing',[]],['s1',['missing']]]){const before=C.copy(p);assert.throws(()=>C.insertStep(p,...args));assert.deepEqual(p,before);}
+const rest=C.copy(p);C.reorderStep(p,'s2','s1');assert.equal(p.steps[0].id,'s2');
+assert.deepEqual(p.steps[0],rest.steps.find(s=>s.id==='s2'));assert.deepEqual(p.nodes,rest.nodes);assert.deepEqual(p.edges,rest.edges);
+C.reorderStep(p,'s2',null);assert.equal(p.steps.at(-1).id,'s2');
+const unchanged=C.copy(p);C.reorderStep(p,'s2','s2');assert.deepEqual(p,unchanged);
+assert.throws(()=>C.reorderStep(p,'s2','missing'));assert.deepEqual(p,unchanged);
+assert.deepEqual(C.parseProjectFile(C.serialize(p)),p);
+console.log('PASS: selected-component steps, internal/external edges, blank insertion, stable references, reorder both directions, metadata, atomic rejection, roundtrip');
+if(process.argv.includes('--fixture'))require('node:fs').writeFileSync(__dirname+'/desktop/qa-output/steps.json',C.serialize(original));

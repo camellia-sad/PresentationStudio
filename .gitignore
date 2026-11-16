@@ -1,0 +1,15 @@
+desktop/vendor/
+release/
+desktop/test-data/
+desktop/qa-output/
+desktop/*.log
+
+__pycache__/
+docs/test-runtime/
+docs/qa/
+node_modules/
+
+/汇报工作台.html
+
+docs/deployment-backup/
+docs/guide-sync-backup/

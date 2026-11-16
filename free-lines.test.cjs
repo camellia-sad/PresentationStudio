@@ -1,0 +1,28 @@
+const assert=require('node:assert/strict');
+const C=require('./core.js');
+const p=C.newProject(),step=p.steps[0].id;
+const a=C.node('shape',100,100,step),b=C.node('image',500,100,step);
+p.nodes.push(a,b);p.edges.push(C.edge(a.id,b.id,step));
+const line=C.freeEdge({x:-50,y:40},{x:750,y:480},step);p.edges.push(line);
+assert.equal(C.edgePath(line,p.nodes),'M -50 40 L 750 480');
+assert.deepEqual(C.parseProjectFile(C.serialize(p)),p);
+assert.deepEqual(C.junctionEdges(p,line.id),[]);
+const split=C.copy(p);C.splitEdge(split,line.id,a.id);assert.equal(split.edges.length,3);
+assert.equal(split.edges[1].toAttachment,a.id);assert.equal(split.edges[2].fromAttachment,a.id);
+split.nodes[0].x+=100;assert.deepEqual(C.edgePoints(split.edges[1],split.nodes)[1],C.anchor(split.nodes[0],split.edges[1].toAnchor));
+assert.deepEqual(C.parseProjectFile(C.serialize(split)),split);
+const fragment=C.copyFragment(split,[a.id]),target=C.newProject();const pasted=C.pasteFragment(target,fragment,target.steps[0].id,0);
+assert(target.edges.every(e=>C.edgeNodeIds(e).every(id=>pasted.includes(id))));C.validate(target);
+assert.equal(C.detachedEdge(split.edges[1],split.nodes).toAttachment,undefined);
+const bad=C.copy(split);bad.edges[1].toAttachment='missing';assert.throws(()=>C.validate(bad),/关联/);
+C.remove(split,[a.id]);assert.equal(split.edges.length,0);
+const invalid=C.copy(p);invalid.edges[1].fromPoint.x=NaN;assert.throws(()=>C.validate(invalid),/连线/);
+const mixed=C.copy(p);mixed.edges[1].from=a.id;assert.throws(()=>C.validate(mixed),/连线/);
+const canvas=C.expandCanvas(p.canvas,C.contentNodes(p));assert(canvas.x<-50);
+C.insertSpace(p,'y',200,120);
+assert.deepEqual(p.edges[1].fromPoint,{x:-50,y:40});assert.deepEqual(p.edges[1].toPoint,{x:750,y:600});
+C.remove(p,[a.id]);assert.equal(p.edges.length,1);assert.equal(p.edges[0].id,line.id);
+const added=C.insertStep(p,step,[b.id]);C.reorderStep(p,added,step);C.deleteStep(p,step);C.validate(p);
+assert.equal(p.edges[0].stepId,added);
+for(const route of ['straight','elbow','curve']){p.edges[0].route=route;assert(!C.edgePath(p.edges[0],p.nodes).includes('NaN'));}
+console.log('PASS: free-line persistence, geometry, space insertion, canvas expansion, deletion, steps and legacy edges');

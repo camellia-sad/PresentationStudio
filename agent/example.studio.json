@@ -1,0 +1,598 @@
+{
+  "schemaVersion": 1,
+  "id": "agent-tutorial-demo",
+  "title": "Agent 教程 · 组件与步骤示例",
+  "canvas": {
+    "x": 0,
+    "y": 0,
+    "width": 1200,
+    "height": 1500,
+    "background": "#f7f6f1",
+    "grid": false,
+    "snap": false
+  },
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "name": "主题",
+      "x": 90,
+      "y": 40,
+      "w": 1020,
+      "h": 90,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "intro",
+      "animation": {
+        "type": "fade",
+        "duration": 600,
+        "delay": 0
+      },
+      "style": {
+        "fill": "transparent",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 42,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 700,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "text": "如何把复杂工作讲清楚？"
+    },
+    {
+      "id": "question-bg",
+      "type": "shape",
+      "name": "问题背景",
+      "x": 90,
+      "y": 160,
+      "w": 1020,
+      "h": 160,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "intro",
+      "animation": {
+        "type": "fade",
+        "duration": 600,
+        "delay": 0
+      },
+      "style": {
+        "fill": "#eee8f7",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 20,
+        "opacity": 1,
+        "fontSize": 24,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "shape": "rect"
+    },
+    {
+      "id": "question-icon",
+      "type": "icon",
+      "name": "问题图标",
+      "x": 120,
+      "y": 200,
+      "w": 65,
+      "h": 65,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "intro",
+      "animation": {
+        "type": "fade",
+        "duration": 600,
+        "delay": 0
+      },
+      "style": {
+        "fill": "transparent",
+        "color": "#765cb1",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 24,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "icon": "question",
+      "strokeWidth": 2
+    },
+    {
+      "id": "question-text",
+      "type": "text",
+      "name": "问题文字",
+      "x": 210,
+      "y": 190,
+      "w": 850,
+      "h": 100,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "intro",
+      "animation": {
+        "type": "fade",
+        "duration": 600,
+        "delay": 0
+      },
+      "style": {
+        "fill": "transparent",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 30,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 12,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "text": "先提出问题，再展示方法和证据。"
+    },
+    {
+      "id": "a",
+      "type": "text",
+      "name": "方向 A",
+      "x": 130,
+      "y": 400,
+      "w": 390,
+      "h": 100,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "method",
+      "animation": {
+        "type": "rise",
+        "duration": 600,
+        "delay": 0
+      },
+      "style": {
+        "fill": "#ffffff",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 1,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 24,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "center",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "text": "方向 A：模型生成候选"
+    },
+    {
+      "id": "b",
+      "type": "text",
+      "name": "方向 B",
+      "x": 680,
+      "y": 400,
+      "w": 390,
+      "h": 100,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "method",
+      "animation": {
+        "type": "rise",
+        "duration": 600,
+        "delay": 120
+      },
+      "style": {
+        "fill": "#ffffff",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 1,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 24,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "center",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "text": "方向 B：约束检查行为"
+    },
+    {
+      "id": "merge",
+      "type": "text",
+      "name": "汇合方法",
+      "x": 380,
+      "y": 620,
+      "w": 440,
+      "h": 100,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "method",
+      "animation": {
+        "type": "rise",
+        "duration": 600,
+        "delay": 240
+      },
+      "style": {
+        "fill": "#e8e0f4",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 24,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 700,
+        "lineHeight": 1.5,
+        "align": "center",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "text": "合并两类信息"
+    },
+    {
+      "id": "figure",
+      "type": "image",
+      "name": "图 1 · 示例示意图",
+      "x": 200,
+      "y": 790,
+      "w": 800,
+      "h": 240,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "method",
+      "animation": {
+        "type": "rise",
+        "duration": 600,
+        "delay": 360
+      },
+      "style": {
+        "fill": "transparent",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 24,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "image",
+        "value": "demo-figure"
+      },
+      "assetId": "demo-figure",
+      "fit": "contain",
+      "positionX": 50,
+      "positionY": 50
+    },
+    {
+      "id": "results",
+      "type": "table",
+      "name": "结果表",
+      "x": 130,
+      "y": 1090,
+      "w": 940,
+      "h": 170,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "summary",
+      "animation": {
+        "type": "fade",
+        "duration": 600,
+        "delay": 0
+      },
+      "style": {
+        "fill": "#ffffff",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 1,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 23,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "cells": [
+        [
+          "对照",
+          "结果"
+        ],
+        [
+          "仅生成",
+          "需要进一步检查"
+        ],
+        [
+          "加入约束",
+          "局部修复后再测试"
+        ]
+      ],
+      "headerFill": "#e7e6f3"
+    },
+    {
+      "id": "details",
+      "type": "button",
+      "name": "补充说明按钮",
+      "x": 130,
+      "y": 1310,
+      "w": 280,
+      "h": 60,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "summary",
+      "animation": {
+        "type": "fade",
+        "duration": 600,
+        "delay": 0
+      },
+      "style": {
+        "fill": "#ece8f6",
+        "color": "#674d9c",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 20,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "center",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "note",
+        "value": "这是示例说明。文本直接保存在 action.value 中，不是 HTML。"
+      },
+      "text": "查看补充说明"
+    },
+    {
+      "id": "back",
+      "type": "button",
+      "name": "回到问题按钮",
+      "x": 450,
+      "y": 1310,
+      "w": 260,
+      "h": 60,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "summary",
+      "animation": {
+        "type": "fade",
+        "duration": 600,
+        "delay": 0
+      },
+      "style": {
+        "fill": "#ece8f6",
+        "color": "#674d9c",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 20,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "center",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "step",
+        "value": "intro"
+      },
+      "text": "回到问题"
+    },
+    {
+      "id": "toggle",
+      "type": "button",
+      "name": "切换问题卡片",
+      "x": 750,
+      "y": 1310,
+      "w": 320,
+      "h": 60,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "summary",
+      "animation": {
+        "type": "fade",
+        "duration": 600,
+        "delay": 0
+      },
+      "style": {
+        "fill": "#ece8f6",
+        "color": "#674d9c",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 20,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "center",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "group",
+        "value": "question-group"
+      },
+      "text": "显示 / 隐藏问题卡片"
+    }
+  ],
+  "edges": [
+    {
+      "id": "a-merge",
+      "from": "a",
+      "to": "merge",
+      "fromAnchor": "bottom",
+      "toAnchor": "top",
+      "route": "curve",
+      "color": "#805eb4",
+      "width": 2,
+      "arrow": true,
+      "dash": false,
+      "label": "候选",
+      "labelSize": 16,
+      "stepId": "method",
+      "animation": {
+        "type": "draw",
+        "duration": 800,
+        "delay": 0
+      }
+    },
+    {
+      "id": "b-merge",
+      "from": "b",
+      "to": "merge",
+      "fromAnchor": "bottom",
+      "toAnchor": "top",
+      "route": "curve",
+      "color": "#398579",
+      "width": 2,
+      "arrow": true,
+      "dash": true,
+      "label": "约束",
+      "labelSize": 16,
+      "stepId": "method",
+      "animation": {
+        "type": "draw",
+        "duration": 800,
+        "delay": 0
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "question-group",
+      "name": "问题卡片",
+      "nodeIds": [
+        "question-bg",
+        "question-icon",
+        "question-text"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "intro",
+      "name": "提出问题",
+      "duration": 6000,
+      "note": "标题、问题卡片和图标均可单独编辑。",
+      "camera": {
+        "cx": 600,
+        "cy": 180,
+        "zoom": 0.8
+      }
+    },
+    {
+      "id": "method",
+      "name": "方法与证据",
+      "duration": 7000,
+      "note": "两条入线汇合到方法节点。图片可点击放大。",
+      "camera": {
+        "cx": 600,
+        "cy": 700,
+        "zoom": 0.65
+      }
+    },
+    {
+      "id": "summary",
+      "name": "结果与补充",
+      "duration": 6000,
+      "note": "表格和按钮是独立组件。",
+      "camera": {
+        "cx": 600,
+        "cy": 1190,
+        "zoom": 0.75
+      }
+    }
+  ],
+  "assets": {
+    "demo-figure": {
+      "name": "示例示意图（非论文原图）",
+      "width": 800,
+      "height": 240,
+      "data": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iMjQwIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjI0MCIgcng9IjIwIiBmaWxsPSIjZThlZGY0Ii8+PHRleHQgeD0iNDAwIiB5PSIxMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDAiIGZpbGw9IiM0MjU0NzMiPlNPVVJDRSDihpIgVEFSR0VUPC90ZXh0Pjwvc3ZnPg=="
+    }
+  }
+}

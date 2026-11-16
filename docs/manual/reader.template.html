@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>汇报工作台 1.6.0 完整使用教程</title>
+<style>
+:root{color-scheme:light;--ink:#23302e;--muted:#677570;--line:#dce4df;--accent:#315c4a;--paper:#fcfcf8;--soft:#eef3ee}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:28px}body{margin:0;color:var(--ink);background:var(--paper);font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;font-size:16px;line-height:1.85}
+a{color:var(--accent);text-underline-offset:4px}button,input{font:inherit}button{cursor:pointer;background:white;color:var(--accent);border:1px solid var(--line);padding:7px 12px;border-radius:5px}button:hover{background:var(--soft)}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a0bdab;outline-offset:3px}
+aside{position:fixed;inset:0 auto 0 0;width:286px;border-right:1px solid var(--line);padding:28px 20px 20px;background:#f0f3ee;display:flex;flex-direction:column;gap:13px}
+.brand{font-size:18px;font-weight:700}.edition{font-size:12px;letter-spacing:.08em;color:var(--muted)}label{display:block;font-size:12px;color:var(--muted)}#manual-search{width:100%;border:1px solid #becfc3;background:white;border-radius:5px;padding:10px 12px;font-size:14px}#search-status{font-size:12px;color:var(--muted);margin:0}.tools{display:flex;gap:8px}.tools button{font-size:12px}nav{overflow:auto;min-height:0;margin-top:2px}nav a{display:block;text-decoration:none;padding:7px 8px;font-size:13px;line-height:1.6;border-left:2px solid transparent;margin:1px 0}nav a:hover,nav a.active{background:#e2ebe2;border-left-color:var(--accent);color:#173e2c}
+main{margin-left:286px;padding:48px 56px 90px;max-width:1260px}header{padding-bottom:30px;border-bottom:2px solid var(--accent)}.eyebrow{font-size:12px;letter-spacing:.13em;color:var(--accent);font-weight:700}h1{font-size:34px;line-height:1.4;letter-spacing:-.02em;margin:12px 0 20px}header p{color:var(--muted);font-size:15px}h2{font-size:25px;line-height:1.5;letter-spacing:-.015em;margin:0 0 22px}h3{font-size:19px;line-height:1.6;margin:30px 0 12px}p{margin:13px 0}strong{font-weight:650}section.chapter{padding:42px 0 36px;border-bottom:1px solid var(--line)}ul,ol{padding-left:26px}li{padding-left:4px;margin:7px 0}img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:5px;margin:25px 0;cursor:zoom-in}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.75;margin:22px 0;table-layout:auto}th{text-align:left;background:#edf2ec;color:#2b493a;font-weight:600}th,td{padding:11px 13px;border:1px solid var(--line);vertical-align:top}td:first-child{min-width:130px}code{font-family:Consolas,monospace;font-size:.88em;background:#eaf0e9;padding:2px 5px;border-radius:3px;overflow-wrap:anywhere}pre{white-space:pre-wrap}footer{margin-top:30px;color:var(--muted);font-size:13px}.empty{padding:40px 0;color:var(--muted)}[hidden]{display:none!important}
+dialog{border:1px solid var(--line);border-radius:6px;max-width:96vw;max-height:96vh;padding:14px;background:white}dialog::backdrop{background:#172d24b3}dialog button{position:sticky;top:0;float:right}dialog img{border:0;max-height:84vh;width:auto;max-width:90vw;margin:45px auto 5px;cursor:default}
+@media(max-width:900px){aside{position:relative;width:auto;height:auto;padding:20px}nav{max-height:240px;display:grid;grid-template-columns:1fr 1fr}main{margin:0;padding:30px 24px 60px}h1{font-size:29px}table{font-size:13px}td:first-child{min-width:90px}}
+@media(max-width:520px){nav{grid-template-columns:1fr}main{padding:26px 16px}h1{font-size:26px}h2{font-size:22px}th,td{padding:8px 7px}td:first-child{min-width:65px}body{font-size:15px}}
+@media print{aside,.empty,dialog{display:none!important}main{margin:0;padding:0;max-width:none}body{background:white;font-size:11pt;line-height:1.65}h1{font-size:25pt}h2{font-size:18pt}h3{font-size:13pt}.chapter{display:block!important;padding:20pt 0!important}h2,h3{break-after:avoid}img{break-inside:avoid}tr{break-inside:avoid}table{font-size:9pt}a{color:inherit;text-decoration:none}header{border-bottom:1px solid #666}footer{font-size:9pt}}
+</style>
+</head>
+<body>
+<aside aria-label="教程目录">
+<div><div class="brand">汇报工作台 · 使用教程</div><div class="edition">VERSION 1.6.0 / 用户版</div></div>
+<div><label for="manual-search">搜索章节全文</label><input id="manual-search" type="search" placeholder="例如：隐藏、镜头、图片"></div>
+<p id="search-status" role="status">共 19 章 · 可离线阅读</p>
+<div class="tools"><button id="clear-search">显示全部</button><button id="print-manual">打印 / 保存 PDF</button></div>
+<nav aria-label="章节">__TOC__</nav>
+</aside>
+<main>
+<header><div class="eyebrow">从第一次打开，到完成一场汇报</div>__INTRO__</header>
+<p id="empty-message" class="empty" hidden>没有找到包含这些词的章节。可以换一个关键词，或点击“显示全部”。</p>
+__CHAPTERS__
+<footer>本教程和全部配图均可离线查看。练习项目可从第 3 章下载。图片可点击放大，按 Esc 关闭。</footer>
+</main>
+<dialog id="image-dialog" aria-label="教程配图放大"><button id="close-image">关闭</button><img alt=""></dialog>
+<script>
+const input=document.querySelector('#manual-search'),chapters=[...document.querySelectorAll('.chapter')],links=[...document.querySelectorAll('nav a')];
+function filter(){const terms=input.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);let count=0;chapters.forEach((section,i)=>{const match=terms.every(t=>section.textContent.toLocaleLowerCase().includes(t));section.hidden=!match;links[i].hidden=!match;if(match)count++;});document.querySelector('#search-status').textContent=terms.length?`找到 ${count} / ${chapters.length} 章`:`共 ${chapters.length} 章 · 可离线阅读`;document.querySelector('#empty-message').hidden=count>0;}
+input.addEventListener('input',filter);document.querySelector('#clear-search').onclick=()=>{input.value='';filter();input.focus();};document.querySelector('#print-manual').onclick=()=>window.print();
+links.forEach(link=>link.addEventListener('click',()=>{links.forEach(a=>a.classList.toggle('active',a===link));}));
+const dialog=document.querySelector('#image-dialog');document.querySelectorAll('.chapter img').forEach(img=>{img.tabIndex=0;img.setAttribute('role','button');img.setAttribute('aria-label','放大配图：'+img.alt);const open=()=>{dialog.querySelector('img').src=img.src;dialog.querySelector('img').alt=img.alt;dialog.showModal();};img.onclick=open;img.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}};});document.querySelector('#close-image').onclick=()=>dialog.close();
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const {pathToFileURL}=require('node:url'),{chromium}=require('playwright');
+const root=path.resolve(__dirname,'../..'),qa=path.join(root,'docs/qa/manual');fs.mkdirSync(qa,{recursive:true});
+let browser;const errors=[],requests=[],checks=[];
+(async()=>{
+ browser=await chromium.launchPersistentContext(path.join(root,'docs/test-runtime/manual-reader'),{headless:true,executablePath:process.env.STUDIO_BROWSER||'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',viewport:{width:1500,height:1000},acceptDownloads:true});
+ const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));
+ await page.goto(pathToFileURL(path.join(__dirname,'汇报工作台完整使用教程.html')).href);
+ assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('.chapter').count(),20);assert.equal(await page.locator('nav a').count(),20);
+ assert.deepEqual(await page.evaluate(()=>[...document.querySelectorAll('a[href^="#"]')].filter(a=>!document.getElementById(decodeURIComponent(a.hash.slice(1)))).map(a=>a.href)),[]);checks.push('20 chapters and all navigation anchors valid');
+ await page.getByRole('searchbox').fill('退场');const matches=await page.locator('.chapter:visible').count();assert(matches>0&&matches<20);assert.equal(await page.locator('nav a:visible').count(),matches);
+ await page.getByRole('searchbox').fill('NO_SUCH_MANUAL_TEXT');assert.equal(await page.locator('#empty-message').isVisible(),true);await page.getByRole('button',{name:'显示全部',exact:true}).click();assert.equal(await page.locator('.chapter:visible').count(),20);checks.push('full-text section search, no-result state and reset');
+ await page.screenshot({path:path.join(qa,'desktop.png')});
+ const first=page.locator('.chapter img').first();await first.scrollIntoViewIfNeeded();await first.click();assert.equal(await page.locator('#image-dialog').isVisible(),true);assert(await page.locator('#image-dialog img').evaluate(el=>el.complete&&el.naturalWidth>0));await page.keyboard.press('Escape');assert.equal(await page.locator('#image-dialog').isVisible(),false);checks.push('embedded image opens and Escape closes');
+ const downloadPromise=page.waitForEvent('download');await page.getByRole('link',{name:'下载练习项目'}).click();const download=await downloadPromise;const downloaded=path.join(qa,'practice-download.json');await download.saveAs(downloaded);assert.deepEqual(JSON.parse(fs.readFileSync(downloaded)),JSON.parse(fs.readFileSync(path.join(__dirname,'练习项目.studio.json'))));checks.push('embedded practice download matches supplied JSON');
+ await page.setViewportSize({width:390,height:844});await page.evaluate(()=>window.scrollTo(0,0));assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:path.join(qa,'mobile.png')});checks.push('narrow-screen layout has no horizontal page overflow');
+ await page.getByRole('searchbox').fill('NO_SUCH_MANUAL_TEXT');await page.emulateMedia({media:'print'});assert.equal(await page.locator('.chapter:visible').count(),20);assert.equal(await page.locator('aside').isVisible(),false);checks.push('print shows all chapters even after filtering');
+ assert.deepEqual(requests.filter(u=>/^https?:/.test(u)),[]);assert.deepEqual(errors,[]);checks.push('local file opens with no network requests or script errors');
+ fs.writeFileSync(path.join(__dirname,'verification-result.json'),JSON.stringify({checks,errors,networkRequests:0},null,2));console.log('PASS: '+checks.join('; '));
+})().catch(e=>{console.error(e);process.exitCode=1;}).finally(async()=>{await browser?.close();});

@@ -1,0 +1,527 @@
+{
+  "schemaVersion": 1,
+  "id": "project_4349c8ac-cdcd-4353-89a5-c9de5308ee0c",
+  "title": "教程练习：从问题到答案",
+  "canvas": {
+    "width": 1300,
+    "height": 850,
+    "background": "#f7f6f1",
+    "grid": true,
+    "snap": false
+  },
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "name": "汇报标题",
+      "x": 80,
+      "y": 45,
+      "w": 1100,
+      "h": 75,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "question",
+      "animation": {
+        "type": "fade",
+        "duration": 500,
+        "delay": 0,
+        "start": "step"
+      },
+      "style": {
+        "fill": "transparent",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 42,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 700,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "text": "从问题到答案"
+    },
+    {
+      "id": "subtitle",
+      "type": "text",
+      "name": "练习提示",
+      "x": 80,
+      "y": 125,
+      "w": 1100,
+      "h": 48,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "question",
+      "animation": {
+        "type": "fade",
+        "duration": 500,
+        "delay": 0,
+        "start": "after"
+      },
+      "style": {
+        "fill": "transparent",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 24,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "text": "先提问，再揭示方案，最后用按钮补充说明。"
+    },
+    {
+      "id": "answer",
+      "type": "text",
+      "name": "下层方案",
+      "x": 100,
+      "y": 250,
+      "w": 1060,
+      "h": 110,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "solution",
+      "animation": {
+        "type": "fade",
+        "duration": 500,
+        "delay": 0,
+        "start": "step"
+      },
+      "style": {
+        "fill": "transparent",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 30,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 600,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "text": "收集素材   →   整理组件   →   分步讲解"
+    },
+    {
+      "id": "cover",
+      "type": "shape",
+      "name": "上层遮盖",
+      "x": 80,
+      "y": 225,
+      "w": 1140,
+      "h": 180,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "question",
+      "animation": {
+        "type": "fade",
+        "duration": 500,
+        "delay": 0,
+        "start": "after"
+      },
+      "style": {
+        "fill": "#eee8fa",
+        "color": "#27313d",
+        "border": "#b29acb",
+        "borderWidth": 1,
+        "radius": 14,
+        "opacity": 1,
+        "fontSize": 24,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "shape": "rect",
+      "endStepId": "solution"
+    },
+    {
+      "id": "question-label",
+      "type": "text",
+      "name": "遮盖上的问题",
+      "x": 130,
+      "y": 275,
+      "w": 1040,
+      "h": 75,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "question",
+      "animation": {
+        "type": "fade",
+        "duration": 500,
+        "delay": 0,
+        "start": "after"
+      },
+      "style": {
+        "fill": "transparent",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 34,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 700,
+        "lineHeight": 1.5,
+        "align": "center",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "text": "如何把复杂内容讲清楚？",
+      "endStepId": "solution"
+    },
+    {
+      "id": "table",
+      "type": "table",
+      "name": "练习数据表",
+      "x": 80,
+      "y": 455,
+      "w": 460,
+      "h": 190,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "solution",
+      "animation": {
+        "type": "fade",
+        "duration": 500,
+        "delay": 0,
+        "start": "after"
+      },
+      "style": {
+        "fill": "#ffffff",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 1,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 24,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "cells": [
+        [
+          "环节",
+          "检查点"
+        ],
+        [
+          "编辑",
+          "文字与布局"
+        ],
+        [
+          "演示",
+          "步骤与动效"
+        ]
+      ],
+      "headerFill": "#e7e6f3"
+    },
+    {
+      "id": "icon",
+      "type": "icon",
+      "name": "提示图标",
+      "x": 610,
+      "y": 420,
+      "w": 75,
+      "h": 75,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "solution",
+      "animation": {
+        "type": "fade",
+        "duration": 500,
+        "delay": 0,
+        "start": "after"
+      },
+      "style": {
+        "fill": "transparent",
+        "color": "#6d52ae",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 24,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "none",
+        "value": ""
+      },
+      "icon": "bulb",
+      "strokeWidth": 2
+    },
+    {
+      "id": "image",
+      "type": "image",
+      "name": "练习示意图",
+      "x": 760,
+      "y": 450,
+      "w": 420,
+      "h": 190,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "solution",
+      "animation": {
+        "type": "fade",
+        "duration": 500,
+        "delay": 0,
+        "start": "after"
+      },
+      "style": {
+        "fill": "transparent",
+        "color": "#27313d",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 24,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "left",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "image",
+        "value": "practice-image"
+      },
+      "assetId": "practice-image",
+      "fit": "contain",
+      "positionX": 50,
+      "positionY": 50
+    },
+    {
+      "id": "note-button",
+      "type": "button",
+      "name": "打开说明按钮",
+      "x": 80,
+      "y": 710,
+      "w": 310,
+      "h": 65,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "conclusion",
+      "animation": {
+        "type": "fade",
+        "duration": 500,
+        "delay": 0,
+        "start": "step"
+      },
+      "style": {
+        "fill": "#ece8f6",
+        "color": "#674d9c",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 20,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "center",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "note",
+        "value": "这是教程练习项目，表格和图形仅作操作演练。你可以替换成自己的内容。"
+      },
+      "text": "查看补充说明"
+    },
+    {
+      "id": "back-button",
+      "type": "button",
+      "name": "返回问题按钮",
+      "x": 430,
+      "y": 710,
+      "w": 310,
+      "h": 65,
+      "rotation": 0,
+      "locked": false,
+      "hidden": false,
+      "parentId": null,
+      "stepId": "conclusion",
+      "animation": {
+        "type": "fade",
+        "duration": 500,
+        "delay": 0,
+        "start": "after"
+      },
+      "style": {
+        "fill": "#ece8f6",
+        "color": "#674d9c",
+        "border": "#cbd2d9",
+        "borderWidth": 0,
+        "radius": 8,
+        "opacity": 1,
+        "fontSize": 20,
+        "fontFamily": "Microsoft YaHei",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "align": "center",
+        "padding": 8,
+        "shadow": 0
+      },
+      "action": {
+        "type": "step",
+        "value": "question"
+      },
+      "text": "回到问题"
+    }
+  ],
+  "edges": [
+    {
+      "id": "practice-edge",
+      "from": "table",
+      "to": "image",
+      "fromAnchor": "right",
+      "toAnchor": "left",
+      "route": "curve",
+      "color": "#917bb4",
+      "width": 2,
+      "arrow": true,
+      "dash": false,
+      "label": "配图说明",
+      "labelSize": 16,
+      "stepId": "solution",
+      "animation": {
+        "type": "draw",
+        "duration": 500,
+        "delay": 0,
+        "start": "after"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group_5e98d69c-4c2a-48a3-9177-5068eeda7518",
+      "name": "问题遮盖卡片",
+      "nodeIds": [
+        "cover",
+        "question-label"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "question",
+      "name": "提出问题",
+      "duration": 3500,
+      "note": "先请听众想一想：怎样说明这套流程？",
+      "camera": {
+        "cx": 650,
+        "cy": 425,
+        "zoom": 0.66
+      },
+      "animationOrder": [
+        "title",
+        "subtitle",
+        "cover",
+        "question-label"
+      ]
+    },
+    {
+      "id": "solution",
+      "name": "展示方案",
+      "duration": 5000,
+      "note": "遮盖退场，露出三个步骤；说明数据只是练习。",
+      "camera": {
+        "cx": 650,
+        "cy": 425,
+        "zoom": 0.66
+      },
+      "animationOrder": [
+        "answer",
+        "table",
+        "icon",
+        "image",
+        "practice-edge"
+      ]
+    },
+    {
+      "id": "conclusion",
+      "name": "结论与互动",
+      "duration": 4000,
+      "note": "点击按钮查看说明，或返回问题步骤。",
+      "camera": {
+        "cx": 650,
+        "cy": 425,
+        "zoom": 0.66
+      },
+      "animationOrder": [
+        "note-button",
+        "back-button"
+      ]
+    }
+  ],
+  "assets": {
+    "practice-image": {
+      "name": "练习示意图.svg",
+      "data": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNjAiIGhlaWdodD0iMTYwIiB2aWV3Qm94PSIwIDAgMzYwIDE2MCI+PHJlY3Qgd2lkdGg9IjM2MCIgaGVpZ2h0PSIxNjAiIHJ4PSIxMiIgZmlsbD0iI2U5ZjJmMCIvPjxwYXRoIGQ9Ik00MCAxMjBMMTAwIDgwTDE3MCAxMDBMMjQwIDQwTDMxNSAyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjQ3YjZiIiBzdHJva2Utd2lkdGg9IjciLz48cGF0aCBkPSJNNDAgMjBWMTMwSDMyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzE5MjhjIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=",
+      "width": 360,
+      "height": 160
+    }
+  }
+}

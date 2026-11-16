@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN" data-document-id="studio-home-v1" data-start-mode="edit">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>汇报工作台</title><style>__STYLE__</style></head>
+<body>
+  <header id="topbar" class="editor-chrome"><button class="brand" aria-label="汇报工作台，返回主页"><span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM8.5 16v-3M12 16v-6M15.5 16V7.5"/></svg></span><span>汇报工作台</span></button><div class="project-identity"><input id="project-title" data-prop="title" data-scope="project" type="text" aria-label="项目名称" value=""><span id="save-state" role="status">准备中</span></div><div class="top-actions"><div class="global-files"><button id="library">项目</button><button id="new-project">新建</button><button id="import">导入</button></div><div class="history-tools"><button id="undo" title="Ctrl+Z">撤销</button><button id="redo" title="Ctrl+Shift+Z">重做</button></div><button id="export">导出</button><button id="present" class="primary">▶ 演示</button></div></header>
+  <div class="workspace">
+    <nav id="left-rail" class="editor-chrome" aria-label="左侧面板"><div class="tabs"><button data-tab="add" class="active">组件</button><button data-tab="layers">图层</button><button data-tab="steps">步骤</button></div><button id="help" class="help" title="快捷键与使用说明">帮助</button></nav>
+    <aside id="left-panel" class="editor-chrome"><div id="left-content"></div></aside>
+    <main id="viewport" tabindex="0" aria-label="汇报画布"><div id="world"><div id="paper"></div><div id="canvas-frame" hidden></div><svg id="edges" aria-label="连线"></svg><div id="nodes"></div><svg id="free-edges" aria-label="自由线条"></svg><div id="selection"></div><div id="marquee" hidden></div><svg id="connection-preview"></svg></div><div id="empty-hint" class="editor-chrome" hidden><span class="empty-mark" aria-hidden="true">＋</span><h2>从一个想法开始</h2><p>添加标题、图片，或从左侧选择汇报组件</p><div><button data-add="heading" class="primary">添加标题</button><button data-add="image">添加图片</button></div></div><div id="canvas-tools" class="editor-chrome" role="toolbar" aria-label="画布视图"><button id="pan-tool" aria-pressed="false" title="开启后可在组件上拖动视野，再次点击返回选择">拖动画布</button><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-label" title="恢复 100%">100%</button><button id="zoom-in" aria-label="放大">＋</button><span></span><button id="select-all" title="Ctrl+Shift+A：从任何输入框全选画布组件">全选组件</button><button id="fit">适应画布</button><button id="fit-selection">聚焦选中</button><button id="toggle-grid">网格</button></div><div class="editor-chrome" id="horizontal-navigation" aria-label="水平视野导航"><button id="scroll-left" aria-label="视野向左">◀</button><span>左右平移</span><input id="horizontal-scroll" type="range" min="0" max="100" value="50" aria-label="左右平移视角"><button id="scroll-right" aria-label="视野向右">▶</button></div></main>
+    <section id="step-track" class="editor-chrome" aria-label="演示步骤"><button class="track-present" data-command="present-step" title="从当前步骤演示 · Shift+F5">从本步演示</button><div class="track-steps" role="list"></div><button class="track-add" data-command="step-add" title="在末尾添加步骤" aria-label="在末尾添加步骤">＋</button></section>
+    <div class="editor-chrome" id="text-toolbar" role="toolbar" aria-label="文字快捷工具" hidden>
+      <div class="text-toolbar-row"><select data-prop="style.fontFamily" data-scope="node" aria-label="快捷字体"><option value="Microsoft YaHei">微软雅黑</option><option value="SimSun">宋体</option><option value="Arial">Arial</option><option value="Inter">Inter</option><option value="Consolas">Consolas</option><option value="Georgia">Georgia</option></select><input type="number" min="1" max="500" data-prop="style.fontSize" data-scope="node" aria-label="快捷字号" title="字号"><button data-command="text-bold" aria-label="加粗" title="加粗 / 取消加粗" aria-pressed="false"><strong>B</strong></button><input type="color" data-prop="style.color" data-scope="node" aria-label="快捷文字颜色" title="文字颜色"><button data-command="text-align-left" title="文字左对齐">左</button><button data-command="text-align-center" title="文字居中">中</button><button data-command="text-align-right" title="文字右对齐">右</button></div>
+      <div class="text-toolbar-row"><span>组件位置</span><button data-command="align-left">居左</button><button data-command="align-center">居中</button><button data-command="align-right">居右</button></div>
+    </div>
+    <aside id="inspector" class="editor-chrome"><div class="inspector-title"><div class="inspector-identity"><span id="selection-kind">画布</span><strong id="inspector-heading">画布设置</strong></div><button id="deselect" title="取消选择">×</button></div><div id="properties"></div></aside>
+  </div>
+  <footer id="statusbar" class="editor-chrome"><span id="status">选择组件以编辑</span><span></span></footer>
+  <div id="presentation-bar" hidden><button id="exit-presentation">返回编辑</button><button id="previous-step">←</button><div><strong id="presentation-name"></strong><span id="presentation-progress"></span></div><button id="next-step">→</button><button id="show-overview" aria-pressed="false">全部展开</button><button id="auto-play">自动播放</button><button id="presenter-notes">备注</button><button id="fullscreen">全屏</button></div>
+  <dialog id="dialog"><header><h2 id="dialog-title"></h2><button id="close-dialog">关闭 ×</button></header><div id="dialog-content"></div></dialog>
+  <input id="image-upload" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" multiple hidden><input id="project-upload" type="file" accept="application/json,text/html,.json,.html,.htm" hidden>
+  <div id="toast" role="status" hidden></div>
+  <script id="seed-project" type="application/json">__PROJECT__</script>
+  <script id="agent-guide" type="application/json">__AGENT_GUIDE__</script>
+  <script id="agent-example" type="application/json">__AGENT_EXAMPLE__</script>
+  <script id="studio-core">__CORE__</script>
+  <script id="studio-stepnav">__STEPNAV__</script>
+  <script id="studio-tools">__TOOLS__</script>
+  <script id="studio-projects">__PROJECTS__</script>
+  <script id="studio-sidebar">__SIDEBAR__</script>
+  <script id="studio-layers">__LAYERS__</script>
+  <script id="studio-preview">__PREVIEW__</script>
+  <script id="studio-ui">__UI__</script>
+  <script id="studio-components">__COMPONENTS__</script>
+  <script id="studio-template">__TEMPLATE_EDITOR__</script>
+  <script id="studio-motion">__MOTION__</script>
+  <script id="studio-welcome">__WELCOME__</script>
+  <script id="studio-effects">__EFFECTS__</script>
+  <script id="studio-app">__APP__</script>
+</body></html>

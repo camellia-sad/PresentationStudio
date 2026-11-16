@@ -1,0 +1,9 @@
+{
+  "name": "presentation-studio",
+  "productName": "汇报工作台",
+  "version": "1.11.0",
+  "description": "可编辑的文献汇报与思维导图工作台",
+  "main": "main.cjs",
+  "private": true,
+  "license": "UNLICENSED"
+}

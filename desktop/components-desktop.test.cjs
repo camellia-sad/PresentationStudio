@@ -1,0 +1,30 @@
+'use strict';
+const {_electron:electron}=require('playwright');
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..'),data=path.join(root,'docs/test-runtime/components-desktop-'+Date.now()),errors=[];
+fs.mkdirSync(data,{recursive:true});let app;
+async function launch(){app=await electron.launch({executablePath:'D:/PresentationStudio/汇报工作台.exe',args:['--data-dir='+data],timeout:30000});const page=await app.firstWindow();page.on('pageerror',e=>errors.push(e.message));await page.waitForFunction(()=>state.ready&&window.studioDesktop);await page.evaluate(async()=>{const r=(await studioDesktop.allRecords()).find(r=>!r.deletedAt);await loadProject(r?.project||C.newProject('组件库验收'),r?.view,r);});await page.getByRole('button',{name:'局限性卡片',exact:true}).waitFor();await app.evaluate(({BrowserWindow})=>BrowserWindow.getAllWindows().forEach(w=>w.hide()));return page;}
+(async()=>{
+ let page=await launch();assert.equal(await app.evaluate(({app})=>app.getVersion()),require('./package.json').version);
+ assert.equal(await page.evaluate(async()=>(await studioDesktop.allComponents()).length),4);
+ assert.equal(await page.getByText('可拆分的组合',{exact:true}).count(),0);
+ await page.getByRole('button',{name:'问题卡片',exact:true}).dispatchEvent('click');
+ await page.getByRole('button',{name:'＋ 将选中内容存为组件'}).dispatchEvent('click');await page.locator('#component-name').fill('跨重启组件');await page.locator('#component-save-submit').dispatchEvent('click');
+ await page.getByRole('button',{name:'跨重启组件',exact:true}).waitFor();
+ const componentId=await page.evaluate(async()=>(await studioDesktop.allComponents()).find(r=>r.project.title==='跨重启组件').id);
+ assert.ok(fs.existsSync(path.join(data,'component-library',componentId+'.record.json')));
+  const mainBefore=await page.evaluate(()=>JSON.stringify(state.project));
+  await page.getByRole('button',{name:'管理',exact:true}).dispatchEvent('click');await page.locator('#component-search').fill('跨重启组件');await page.locator('#component-preview-actions [data-component-action=edit]').dispatchEvent('click');
+  await page.locator('#template-layers button').filter({hasText:'提出一个问题'}).dispatchEvent('click');await page.locator('[data-template-prop=text]').fill('独立模板草稿已保存');await page.locator('[data-template-prop=text]').dispatchEvent('change');await page.locator('#template-save').dispatchEvent('click');
+  await page.waitForFunction(()=>Boolean(document.getElementById('component-results')),null,{polling:100});assert.equal(await page.evaluate(()=>JSON.stringify(state.project)),mainBefore);
+  assert(JSON.parse(fs.readFileSync(path.join(data,'component-library',componentId+'.record.json'),'utf8')).project.nodes.some(n=>n.text==='独立模板草稿已保存'));
+ await app.close();app=null;
+ page=await launch();await page.getByRole('button',{name:'跨重启组件',exact:true}).dispatchEvent('click');
+ assert.equal(await page.evaluate(()=>state.selected.size),4);
+  assert(await page.evaluate(()=>selectedNodes().some(n=>n.text==='独立模板草稿已保存')));
+ assert.equal(await page.evaluate(async id=>(await studioDesktop.allRecords()).some(r=>r.id===id),componentId),false);
+ await page.evaluate(async()=>{await persistNow();});const id=await page.evaluate(()=>state.project.id);
+ assert.equal(JSON.parse(fs.readFileSync(path.join(data,'projects',id+'.record.json'),'utf8')).project.nodes.filter(n=>n.text==='提出一个问题').length>=1,true);
+ assert.deepEqual(errors,[]);fs.writeFileSync(path.join(root,'docs/qa/components-desktop-result.json'),JSON.stringify({version:require('./package.json').version,data,restartPersistence:true,insert:true,separateFromProjects:true,errors},null,2));
+ console.log('PASS: desktop defaults, disk persistence across full restart, editable insertion, project/library separation');
+})().catch(e=>{console.error(e);process.exitCode=1;}).finally(async()=>{await app?.close();});
