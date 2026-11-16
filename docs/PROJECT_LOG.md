@@ -5,7 +5,8 @@
 - 目标与验收：按用户明确指令上传当前1.11.0到camellia-sad/PresentationStudio，保留本地现有暂存内容；远程main包含可构建源码、测试与教程，排除个人数据、运行时、缓存、备份及本机结果文件，并验证远程提交内容。
 1. 2026-11-16｜问题/现象：本地master尚无提交，既有54个暂存条目来自初始基线；远程仓库为空，本机Git无可用非交互凭据 → 具体处理：通过已连接GitHub确认账号与仓库写权限，选择GitHub连接器上传完整当前文件树；保存原index副本及SHA-256，按明确清单筛选源码/文档并扫描常见凭证模式；本机Git只读取远端和记录origin → 实际结果：账号与目标一致且有管理/写权限，候选91文件约6MB未命中常见密钥模式；拟发布75文件，排除历史设计候选与5项本机结果，原暂存内容保持原样。关联CMD-20261116-07。
 2. 2026-11-16｜问题/现象：GitHub连接器创建文件返回403 Resource not accessible by integration；现有SSH密钥经官方主机指纹核对后认证被拒 → 具体处理：改为本机Git官方凭据管理器登录；以独立GIT_INDEX_FILE准备当前75文件的发布提交与main分支，保留原master暂存内容，提交身份使用已核实账号的GitHub隐私邮箱 → 实际结果：上传内容与认证障碍已区分，未改远程内容；待官方登录完成后推送。
-- 当前状态：发布准备完成后等待GitHub认证，尚未推送；辅助文件均位于本项目docs/test-runtime/github-publish。
+3. 2026-11-16｜问题/现象：普通权限检查无法读取凭据，已连接GitHub的写接口也受集成权限限制 → 具体处理：以获批准权限调用Git Credential Manager，发现camellia-sad已有凭据，直接HTTPS推送独立发布分支main，无需新增凭据；再用ls-remote与GitHub读取package.json核对 → 实际结果：首个源码提交40e4158d9b4134ddb87ea3d952210e53e0d67e34已推送，远程HEAD指向main，75文件、版本1.11.0一致；排除个人数据/运行时/缓存/备份，原index SHA-256不变。纠正前述“本机无凭据”的判断：仅受限权限环境不可读取，并非凭据不存在。发布记录随后以独立文档提交同步。
+- 当前状态：已发布到https://github.com/camellia-sad/PresentationStudio，main为发布分支，本地origin与上游已设置；原master和原暂存区保留。所有辅助文件仅在本项目docs/test-runtime/github-publish和docs/qa。用户本轮已明确授权推送；未改全局Git身份、未强制推送、未改写历史。
 
 ## LOG-20261116-06｜按用户选定的简约商务方案重写桌面版界面排布
 

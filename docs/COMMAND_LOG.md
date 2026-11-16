@@ -835,3 +835,15 @@ git config --local --list
 
 - 认证排查 → GitHub create_file(.gitignore)返回403 Resource not accessible by integration，远程仍为空。现有SSH因未记主机密钥而首次拒绝，采用GitHub官方公开Ed25519密钥写入项目忽略目录known_hosts（未改用户全局配置），ssh-keygen指纹与官方SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU一致，随后SSH返回Permission denied(publickey)。ssh-keyscan因本机版本不支持协商方法失败；没有凭此接受未知主机。官方核验页：https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints。
 - 分析 → 账号仓库权限与连接器集成权限不同，不能把403当作用户没有仓库写权限。改用Git Credential Manager官方设备登录；独立索引与main发布分支保护原暂存内容。
+
+- 发布提交操作 → 使用独立GIT_INDEX_FILE=docs/test-runtime/github-publish/publish-index，git read-tree --empty与git add --pathspec-from-file=.../paths.nul --pathspec-file-nul准备明确75文件；git diff --cached --check通过，git write-tree得到内容树；git -c user.name=camellia-sad -c user.email=180517646+camellia-sad@users.noreply.github.com commit-tree以GitHub公开账号隐私邮箱生成首个源码提交，再以update-ref的空SHA前提创建main。之后清除GIT_INDEX_FILE，原index的SHA-256仍30654deb7c5758884ad0e8713e87625f0e34dc73e44b84172058884cc90bb658。原master/暂存区未切换或重置。
+- 目的 → 发布完整当前源码，同时保留已有初始暂存基线；不写全局身份。
+- 结果 → 首个源码提交40e4158d9b4134ddb87ea3d952210e53e0d67e34，75文件。git remote add origin设置用户指定HTTPS地址。Git Credential Manager在获批准权限下报告已有camellia-sad凭据，原受限环境credential fill结果不代表凭据不存在。执行以下命令推送成功，无需手动登录或修改SSH用户配置。
+```powershell
+git credential-manager github login --url https://github.com --username camellia-sad --device --no-ui
+$env:GIT_TERMINAL_PROMPT='0'
+$env:GCM_INTERACTIVE='Never'
+git push --set-upstream origin main
+git ls-remote --symref origin HEAD refs/heads/main
+```
+- 分析 → 远程HEAD/main与本地源码提交一致，GitHub fetch_file确认package.json版本1.11.0；文件树未含data、release、test-runtime、deployment-backup或环境密钥文件。发布未改变产品实现，沿用本轮已通过的22数据测试/11浏览器套件及安装验收。后续文档提交仅同步此次发布记录，使用独立索引和父提交，不动原暂存内容。
